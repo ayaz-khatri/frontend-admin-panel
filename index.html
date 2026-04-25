@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Shopcast — Dashboard</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<div class="mob-overlay" id="mobOverlay"></div>
+<button class="rs-fab" id="rsFab" title="Activity &amp; Alerts"><i class="fa-solid fa-sliders"></i></button>
+
+<div class="shell">
+
+  <!-- LEFT SIDEBAR -->
+  <aside class="sidebar" id="sidebar">
+    <a href="#" class="sb-brand">
+      <div class="brand-icon">S</div>
+      <span class="brand-text">Shopcast</span>
+    </a>
+    <nav class="sb-nav">
+      <div class="nav-label-section">Main</div>
+      <a href="#" class="nav-link-item active"><span class="ni"><i class="fa-solid fa-gauge-high"></i></span><span class="nl">Overview</span></a>
+      <a href="#" class="nav-link-item"><span class="ni"><i class="fa-solid fa-chart-bar"></i></span><span class="nl">Sales</span><span class="n-badge">3</span></a>
+      <a href="#" class="nav-link-item"><span class="ni"><i class="fa-solid fa-store"></i></span><span class="nl">Stores</span></a>
+      <a href="#" class="nav-link-item"><span class="ni"><i class="fa-solid fa-boxes-stacked"></i></span><span class="nl">Inventory</span></a>
+      <div class="nav-label-section">Analytics</div>
+      <a href="#" class="nav-link-item"><span class="ni"><i class="fa-solid fa-magnifying-glass-chart"></i></span><span class="nl">Search Analytics</span></a>
+      <a href="#" class="nav-link-item"><span class="ni"><i class="fa-solid fa-cloud"></i></span><span class="nl">Cloud Health</span></a>
+      <a href="#" class="nav-link-item"><span class="ni"><i class="fa-solid fa-file-lines"></i></span><span class="nl">Reports</span></a>
+      <div class="nav-label-section">System</div>
+      <a href="#" class="nav-link-item"><span class="ni"><i class="fa-solid fa-users"></i></span><span class="nl">Users</span></a>
+      <a href="#" class="nav-link-item"><span class="ni"><i class="fa-solid fa-code"></i></span><span class="nl">Developer</span></a>
+      <a href="#" class="nav-link-item"><span class="ni"><i class="fa-solid fa-gear"></i></span><span class="nl">Settings</span></a>
+    </nav>
+    <div class="sb-footer">
+      <div class="sb-user">
+        <div class="u-av-sm">SC</div>
+        <div class="u-info"><div class="uname">Sam Carter</div><div class="urole">Administrator</div></div>
+      </div>
+    </div>
+  </aside>
+
+  <div class="main-col">
+
+    <!-- TOPBAR -->
+    <header class="topbar">
+      <button class="tb-toggle" id="sbToggle"><i class="fa-solid fa-bars"></i></button>
+      <span class="tb-title">Dashboard</span>
+      <div class="tb-search">
+        <i class="fa-solid fa-magnifying-glass si"></i>
+        <input type="text" placeholder="Search…" />
+      </div>
+      <div class="tb-actions">
+
+        <!-- Messages -->
+        <div class="tb-dd" id="msgDd">
+          <div class="ib" onclick="toggleDd('msgDd')">
+            <i class="fa-regular fa-envelope"></i>
+            <span class="bdot"></span>
+          </div>
+          <div class="dd-panel dd-msg">
+            <div class="dd-hdr"><span class="dd-hdr-title">Messages</span><a href="#" class="dd-hdr-link">Mark all read</a></div>
+            <div class="msg-item unread">
+              <div class="msg-av ca">OC</div>
+              <div class="msg-body"><div class="msg-name">Olivia Chen</div><div class="msg-preview">Hey, the Q2 sales report is ready for review…</div><div class="msg-meta"><span class="msg-time">2 min ago</span><span class="msg-dot"></span></div></div>
+            </div>
+            <div class="msg-item unread">
+              <div class="msg-av cc">SM</div>
+              <div class="msg-body"><div class="msg-name">Sara Mendez</div><div class="msg-preview">Can you check Store #5 inventory alert?</div><div class="msg-meta"><span class="msg-time">18 min ago</span><span class="msg-dot"></span></div></div>
+            </div>
+            <div class="msg-item">
+              <div class="msg-av ce">AP</div>
+              <div class="msg-body"><div class="msg-name">Aisha Patel</div><div class="msg-preview">New vendor contract uploaded to Drive</div><div class="msg-meta"><span class="msg-time">1 hr ago</span></div></div>
+            </div>
+            <div class="msg-item">
+              <div class="msg-av cf">TF</div>
+              <div class="msg-body"><div class="msg-name">Tom Fischer</div><div class="msg-preview">Store #4 exceeded monthly target 🎉</div><div class="msg-meta"><span class="msg-time">3 hr ago</span></div></div>
+            </div>
+            <div class="dd-footer"><a href="#">View all messages →</a></div>
+          </div>
+        </div>
+
+        <!-- Notifications -->
+        <div class="tb-dd" id="notifDd">
+          <div class="ib" onclick="toggleDd('notifDd')">
+            <i class="fa-regular fa-bell"></i>
+            <span class="bdot"></span>
+          </div>
+          <div class="dd-panel dd-notif">
+            <div class="dd-hdr"><span class="dd-hdr-title">Notifications</span><a href="#" class="dd-hdr-link">Clear all</a></div>
+            <div class="notif-row unread">
+              <div class="n-icon n-blue"><i class="fa-solid fa-arrow-trend-up"></i></div>
+              <div class="n-body"><div class="n-title">Sales spike detected</div><div class="n-desc">Store #3 revenue up 34% in the last hour.</div><div class="n-foot"><span class="n-time">2 min ago</span><span class="n-udot"></span></div></div>
+            </div>
+            <div class="notif-row unread">
+              <div class="n-icon n-amber"><i class="fa-solid fa-triangle-exclamation"></i></div>
+              <div class="n-body"><div class="n-title">Low stock alert</div><div class="n-desc">SKU-8821 has only 3 units remaining.</div><div class="n-foot"><span class="n-time">18 min ago</span><span class="n-udot"></span></div></div>
+            </div>
+            <div class="notif-row">
+              <div class="n-icon n-green"><i class="fa-solid fa-circle-check"></i></div>
+              <div class="n-body"><div class="n-title">Backup completed</div><div class="n-desc">Cloud snapshot saved successfully.</div><div class="n-foot"><span class="n-time">1 hr ago</span></div></div>
+            </div>
+            <div class="notif-row">
+              <div class="n-icon n-red"><i class="fa-solid fa-user-xmark"></i></div>
+              <div class="n-body"><div class="n-title">Login from new device</div><div class="n-desc">Unrecognized device for admin@shopcast.io</div><div class="n-foot"><span class="n-time">3 hr ago</span></div></div>
+            </div>
+            <div class="dd-footer"><a href="#">View all notifications →</a></div>
+          </div>
+        </div>
+
+        <!-- Desktop right-sidebar toggle -->
+        <div class="ib" id="rightToggle" title="Activity Panel" onclick="toggleRightSb()">
+          <i class="fa-solid fa-sliders"></i>
+        </div>
+
+        <!-- Avatar -->
+        <div class="tb-dd" id="avDd">
+          <div class="av-btn" onclick="toggleDd('avDd')">SC</div>
+          <div class="dd-panel dd-av">
+            <a href="#"><i class="fa-regular fa-user"></i> Profile</a>
+            <a href="#"><i class="fa-regular fa-credit-card"></i> Billing</a>
+            <a href="#"><i class="fa-solid fa-gear"></i> Settings</a>
+            <div class="hr"></div>
+            <a href="#"><i class="fa-solid fa-right-from-bracket"></i> Sign Out</a>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <div class="content-row">
+
+      <!-- MAIN CONTENT -->
+      <main class="main-content">
+
+        <div class="pg-hdr">
+          <div><h1>Overview</h1><div class="pg-crumb">Home / <span>Dashboard</span></div></div>
+          <div class="pg-actions">
+            <button class="btn-out"><i class="fa-solid fa-download"></i> Export</button>
+            <button class="btn-prim"><i class="fa-solid fa-plus"></i> New Report</button>
+          </div>
+        </div>
+
+        <!-- STAT CARDS -->
+        <div class="stat-grid">
+          <div class="stat-card" data-cc="blue">
+            <div class="sc-top"><div class="sc-icon"><i class="fa-solid fa-dollar-sign"></i></div><span class="sc-badge"><i class="fa-solid fa-arrow-up"></i> 11.9%</span></div>
+            <div><div class="sc-label">Total Sales</div><div class="sc-val">$12,540</div><div class="sc-sub">vs $11,205 last month</div></div>
+          </div>
+          <div class="stat-card" data-cc="green">
+            <div class="sc-top"><div class="sc-icon"><i class="fa-solid fa-store"></i></div><span class="sc-badge"><i class="fa-solid fa-arrow-up"></i> 9.11%</span></div>
+            <div><div class="sc-label">Active Stores</div><div class="sc-val">08</div><div class="sc-sub">2 added this quarter</div></div>
+          </div>
+          <div class="stat-card" data-cc="amber">
+            <div class="sc-top"><div class="sc-icon"><i class="fa-solid fa-triangle-exclamation"></i></div><span class="sc-badge dn"><i class="fa-solid fa-arrow-down"></i> 5.45%</span></div>
+            <div><div class="sc-label">Inventory Alerts</div><div class="sc-val">14</div><div class="sc-sub">3 critical items</div></div>
+          </div>
+          <div class="stat-card" data-cc="sky">
+            <div class="sc-top"><div class="sc-icon"><i class="fa-solid fa-cloud"></i></div><span class="sc-badge"><i class="fa-solid fa-arrow-up"></i> 15.3%</span></div>
+            <div><div class="sc-label">Cloud Status</div><div class="sc-val">Online</div><div class="sc-sub">99.98% uptime this month</div></div>
+          </div>
+        </div>
+
+        <!-- CHART + PRODUCTS -->
+        <div class="mid-grid">
+          <div class="panel">
+            <div class="panel-hdr">
+              <div><div class="panel-title">Sales Chart</div><div class="panel-sub">Monthly performance</div></div>
+              <a href="#" class="panel-link">View All <i class="fa-solid fa-arrow-right"></i></a>
+            </div>
+            <div class="chart-body">
+              <div class="chart-meta"><span class="chart-val">$12,540</span><span class="chart-diff"><i class="fa-solid fa-arrow-up"></i> +0.47% · 505.08</span></div>
+              <div class="chart-wrap"><canvas id="salesChart"></canvas></div>
+            </div>
+          </div>
+          <div class="panel">
+            <div class="panel-hdr">
+              <div><div class="panel-title">Our Products</div><div class="panel-sub">Shopcast</div></div>
+              <a href="#" class="panel-link">All <i class="fa-solid fa-arrow-right"></i></a>
+            </div>
+            <div class="prod-item">
+              <div class="prod-thumb"><i class="fa-solid fa-tag"></i></div>
+              <div class="prod-info"><div class="prod-name">903,041</div><div class="prod-meta">28 Jun 2025 · 3,048 Txs · 1.58 Mb</div></div>
+              <div class="prod-stat"><div class="prod-amt up">+2.4%</div><div class="prod-chg up"><i class="fa-solid fa-arrow-up"></i></div></div>
+            </div>
+            <div class="prod-item">
+              <div class="prod-thumb" style="background:linear-gradient(135deg,#10b981,#059669)"><i class="fa-solid fa-bag-shopping"></i></div>
+              <div class="prod-info"><div class="prod-name">203,041</div><div class="prod-meta">24 Jun 2025 · 3,045 Txs · 1.55 Mb</div></div>
+              <div class="prod-stat"><div class="prod-amt dn2">-1.1%</div><div class="prod-chg dn2"><i class="fa-solid fa-arrow-down"></i></div></div>
+            </div>
+            <div class="prod-item">
+              <div class="prod-thumb" style="background:linear-gradient(135deg,#f59e0b,#d97706)"><i class="fa-solid fa-bolt"></i></div>
+              <div class="prod-info"><div class="prod-name">503,041</div><div class="prod-meta">22 Jun 2025 · 3,044 Txs · 1.51 Mb</div></div>
+              <div class="prod-stat"><div class="prod-amt up">+5.7%</div><div class="prod-chg up"><i class="fa-solid fa-arrow-up"></i></div></div>
+            </div>
+            <div class="prod-item">
+              <div class="prod-thumb" style="background:linear-gradient(135deg,#8b5cf6,#6d28d9)"><i class="fa-solid fa-cube"></i></div>
+              <div class="prod-info"><div class="prod-name">102,801</div><div class="prod-meta">18 Jun 2025 · 2,991 Txs · 1.44 Mb</div></div>
+              <div class="prod-stat"><div class="prod-amt up">+3.2%</div><div class="prod-chg up"><i class="fa-solid fa-arrow-up"></i></div></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- DATA TABLE -->
+        <div class="panel tbl-panel">
+          <div class="panel-hdr" style="flex-wrap:wrap;gap:10px;">
+            <div><div class="panel-title">Users</div><div class="panel-sub">Manage your platform users</div></div>
+            <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center">
+              <div class="tbl-search">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <input type="text" id="tblSearch" placeholder="Search users…" oninput="filterTable()" />
+              </div>
+              <div style="display:flex;gap:6px;">
+                <button class="f-btn active" onclick="setFilter(this,'all')">All</button>
+                <button class="f-btn" onclick="setFilter(this,'Active')">Active</button>
+                <button class="f-btn" onclick="setFilter(this,'Pending')">Pending</button>
+              </div>
+            </div>
+          </div>
+          <div class="t-scroll">
+            <table class="dt" id="dataTable">
+              <thead>
+                <tr>
+                  <th><input type="checkbox" id="chkAll" onchange="toggleAll(this)" /></th>
+                  <th>User</th><th>Role</th><th>Status</th>
+                  <th>Store</th><th>Revenue</th><th>Joined</th><th>Actions</th>
+                </tr>
+              </thead>
+              <tbody id="tblBody"></tbody>
+            </table>
+          </div>
+          <div class="tbl-pag">
+            <span class="pag-info" id="pagInfo"></span>
+            <div class="pag-btns" id="pagBtns"></div>
+          </div>
+        </div>
+
+      </main>
+
+      <!-- RIGHT SIDEBAR -->
+      <aside class="right-sb closed" id="rightSb">
+        <div class="right-sb-inner">
+          <div class="rs-hdr">
+            <span class="rs-title">Activity &amp; Alerts</span>
+            <div class="rs-x" id="rsClose"><i class="fa-solid fa-xmark"></i></div>
+          </div>
+          <div style="padding:12px 16px 4px"><div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--text-muted);margin-bottom:6px">Notifications</div></div>
+          <div class="rs-notif unr">
+            <div class="rs-ni n-blue"><i class="fa-solid fa-arrow-trend-up"></i></div>
+            <div class="rs-nt"><div class="rnt">Sales spike detected</div><div class="rnd">Store #3 revenue up 34%.</div><div class="rntime">2 min ago</div></div>
+            <div class="rs-ud"></div>
+          </div>
+          <div class="rs-notif unr">
+            <div class="rs-ni n-amber"><i class="fa-solid fa-triangle-exclamation"></i></div>
+            <div class="rs-nt"><div class="rnt">Low stock alert</div><div class="rnd">SKU-8821: only 3 units left.</div><div class="rntime">18 min ago</div></div>
+            <div class="rs-ud"></div>
+          </div>
+          <div class="rs-notif">
+            <div class="rs-ni n-green"><i class="fa-solid fa-circle-check"></i></div>
+            <div class="rs-nt"><div class="rnt">Backup completed</div><div class="rnd">Cloud snapshot saved.</div><div class="rntime">1 hr ago</div></div>
+          </div>
+          <div class="rs-notif">
+            <div class="rs-ni n-red"><i class="fa-solid fa-user-xmark"></i></div>
+            <div class="rs-nt"><div class="rnt">New device login</div><div class="rnd">Unrecognized device detected.</div><div class="rntime">3 hr ago</div></div>
+          </div>
+          <div class="act-sec">
+            <h6>Recent Activity</h6>
+            <div class="act-item"><div class="act-ic n-blue"><i class="fa-solid fa-pen"></i></div><div><div class="act-txt"><strong>Sara M.</strong> updated <strong>SKU-4421</strong>.</div><div class="act-ts">Today, 10:24 AM</div></div></div>
+            <div class="act-item"><div class="act-ic n-green"><i class="fa-solid fa-store"></i></div><div><div class="act-txt"><strong>Store #7</strong> went online.</div><div class="act-ts">Today, 09:55 AM</div></div></div>
+            <div class="act-item"><div class="act-ic n-amber"><i class="fa-solid fa-file-export"></i></div><div><div class="act-txt"><strong>James K.</strong> exported June report.</div><div class="act-ts">Yesterday, 6:10 PM</div></div></div>
+            <div class="act-item"><div class="act-ic n-red"><i class="fa-solid fa-trash"></i></div><div><div class="act-txt"><strong>Admin</strong> deleted 4 accounts.</div><div class="act-ts">Yesterday, 4:00 PM</div></div></div>
+          </div>
+        </div>
+      </aside>
+
+    </div><!-- /content-row -->
+
+    <footer class="main-footer">
+      <span>&copy; 2025 Shopcast Inc. &mdash; All rights reserved.</span>
+      <div class="f-links">
+        <a href="#">Privacy</a><a href="#">Terms</a><a href="#">Support</a>
+        <a href="#">Status <span style="color:var(--success)">&#9679;</span></a>
+      </div>
+    </footer>
+  </div><!-- /main-col -->
+
+</div><!-- /shell -->
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
+
+<script src="script.js"></script>
+</body>
+</html>
