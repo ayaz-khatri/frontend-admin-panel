@@ -1,0 +1,161 @@
+/* ══════════════════════════════════════════════════════════════
+   DASHBOARD.CSS — Dashboard-specific styles
+   Requires: core.css · components.css · layout.css
+══════════════════════════════════════════════════════════════ */
+
+/* ── Dashboard body resets (full-height shell) ── */
+html, body { height: 100%; overflow: hidden; }
+
+/* ══════════════════════════════════════
+   STAT CARDS
+══════════════════════════════════════ */
+.stat-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  margin-bottom: 22px;
+}
+.stat-card {
+  background: var(--bg-card);
+  border-radius: var(--radius);
+  padding: 20px;
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-sm);
+  display: flex; flex-direction: column; gap: 12px;
+  transition: var(--tr);
+  position: relative;
+  overflow: hidden;
+}
+/* Colour accent bar at top, driven by data-cc attribute */
+.stat-card::after {
+  content: '';
+  position: absolute; top: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--cc, var(--primary)), transparent);
+}
+.stat-card:hover { box-shadow: var(--shadow-md); transform: translateY(-2px); }
+
+.sc-top   { display: flex; align-items: flex-start; justify-content: space-between; }
+.sc-icon  {
+  width: 42px; height: 42px;
+  border-radius: 10px;
+  background: var(--primary-light); color: var(--primary);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 17px;
+}
+.sc-badge {
+  font-size: 11px; font-weight: 600;
+  color: var(--success);
+  background: rgba(16,185,129,.1);
+  padding: 2px 8px;
+  border-radius: 99px;
+  display: flex; align-items: center; gap: 3px;
+}
+.sc-badge.dn { color: var(--danger); background: rgba(239,68,68,.1); }
+.sc-label { font-size: 12.5px; color: var(--text-muted); font-weight: 500; }
+.sc-val   { font-family: var(--font-heading); font-size: 26px; font-weight: 700; line-height: 1; }
+.sc-sub   { font-size: 11.5px; color: var(--text-muted); }
+
+/* Colour variants (applied via data-cc="…" on the stat card) */
+[data-cc="blue"]  { --cc: #2563eb; }
+[data-cc="green"] { --cc: #10b981; }
+[data-cc="amber"] { --cc: #f59e0b; }
+[data-cc="sky"]   { --cc: #0ea5e9; }
+[data-cc="green"] .sc-icon { background: rgba(16,185,129,.1); color: #10b981; }
+[data-cc="amber"] .sc-icon { background: rgba(245,158,11,.1); color: #f59e0b; }
+[data-cc="sky"]   .sc-icon { background: rgba(14,165,233,.1); color: #0ea5e9; }
+
+/* ══════════════════════════════════════
+   CHART + PRODUCTS GRID
+══════════════════════════════════════ */
+.mid-grid {
+  display: grid;
+  grid-template-columns: 1fr 330px;
+  gap: 16px;
+  margin-bottom: 22px;
+}
+
+/* Chart panel body */
+.chart-body { padding: 16px 20px 20px; }
+.chart-meta { display: flex; align-items: baseline; gap: 10px; margin-bottom: 16px; }
+.chart-val  { font-family: var(--font-heading); font-size: 22px; font-weight: 700; }
+.chart-diff { font-size: 12px; color: var(--success); font-weight: 600; }
+.chart-wrap { position: relative; height: 180px; }
+
+/* ══════════════════════════════════════
+   PRODUCT LIST
+══════════════════════════════════════ */
+.prod-item {
+  display: flex; align-items: center; gap: 12px;
+  padding: 12px 18px;
+  border-bottom: 1px solid var(--border);
+  cursor: pointer;
+  transition: var(--tr);
+}
+.prod-item:last-child { border-bottom: none; }
+.prod-item:hover { background: var(--primary-light); }
+
+.prod-thumb {
+  width: 42px; height: 42px; min-width: 42px;
+  border-radius: 10px;
+  background: linear-gradient(135deg, var(--primary), var(--accent));
+  display: flex; align-items: center; justify-content: center;
+  color: #fff; font-size: 16px;
+}
+.prod-info { flex: 1; min-width: 0; }
+.prod-name { font-weight: 600; font-size: 13px; }
+.prod-meta { font-size: 11.5px; color: var(--text-muted); }
+.prod-stat { text-align: right; }
+.prod-amt  { font-family: var(--font-heading); font-size: 13px; font-weight: 700; }
+.prod-chg  { font-size: 11px; }
+.up  { color: var(--success); }
+.dn2 { color: var(--danger); }
+
+/* ══════════════════════════════════════
+   DATA TABLE (dashboard wrapper)
+══════════════════════════════════════ */
+.tbl-panel { margin-bottom: 24px; }
+
+.tbl-search { position: relative; }
+.tbl-search input {
+  background: var(--bg-body);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 6px 12px 6px 32px;
+  font-size: 12.5px;
+  outline: none;
+  transition: var(--tr);
+  font-family: var(--font-body);
+  width: 200px;
+}
+.tbl-search input:focus { border-color: var(--primary); background: var(--bg-card); }
+.tbl-search i {
+  position: absolute; left: 10px; top: 50%;
+  transform: translateY(-50%);
+  color: var(--text-muted); font-size: 12px;
+  pointer-events: none;
+}
+
+.f-btn {
+  font-size: 12px;
+  padding: 5px 12px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+  background: var(--bg-card);
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: var(--tr);
+  font-family: var(--font-body);
+}
+.f-btn:hover,
+.f-btn.active { border-color: var(--primary); color: var(--primary); background: var(--primary-light); }
+
+/* ══════════════════════════════════════
+   ANIMATIONS
+══════════════════════════════════════ */
+.stat-card { animation: fadeUp .4s ease both; }
+.stat-card:nth-child(1) { animation-delay: .05s; }
+.stat-card:nth-child(2) { animation-delay: .10s; }
+.stat-card:nth-child(3) { animation-delay: .15s; }
+.stat-card:nth-child(4) { animation-delay: .20s; }
+.panel, .tbl-panel { animation: fadeUp .4s .2s ease both; }

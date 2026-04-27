@@ -1,0 +1,163 @@
+/* ══════════════════════════════════════════════════════════════
+   AUTH.CSS — Login, register, forgot & reset page styles
+   Requires: core.css · components.css
+══════════════════════════════════════════════════════════════ */
+
+/* ══════════════════════════════════════
+   AUTH PAGE WRAPPER
+   Full-viewport centred layout with
+   decorative background blobs.
+══════════════════════════════════════ */
+body.auth-body {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px 16px;
+}
+
+.auth-page {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px 16px;
+  background: var(--bg-body);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Background blobs */
+.auth-page::before,
+.auth-page::after {
+  content: '';
+  position: fixed;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: .5;
+  pointer-events: none;
+  z-index: 0;
+}
+.auth-page::before {
+  width: 500px; height: 500px;
+  background: hsla(var(--hue), var(--sat), 60%, .18);
+  top: -120px; right: -120px;
+}
+.auth-page::after {
+  width: 400px; height: 400px;
+  background: hsla(calc(var(--hue) + 30), var(--sat), 65%, .14);
+  bottom: -100px; left: -80px;
+}
+/* ══════════════════════════════════════
+   THEME TOGGLE
+══════════════════════════════════════ */
+.theme-toggle {
+  position: fixed;
+  top: 20px; right: 20px;
+  width: 38px; height: 38px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer; z-index: 9999;
+  box-shadow: var(--shadow-sm);
+  transition: var(--tr);
+  font-size: 16px;
+  color: var(--text-secondary);
+}
+.theme-toggle:hover { color: var(--primary); border-color: var(--primary-mid); }
+[data-theme="dark"] .auth-page::before { opacity: .25; }
+[data-theme="dark"] .auth-page::after  { opacity: .18; }
+
+.auth-wrapper {
+  width: 100%;
+  max-width: 460px;
+  position: relative;
+  z-index: 1;
+}
+
+/* ══════════════════════════════════════
+   BRAND / LOGO
+══════════════════════════════════════ */
+.auth-brand {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 28px;
+  text-decoration: none;
+}
+/* .brand-icon inherits from core.css */
+.auth-brand .brand-icon { width: 40px; height: 40px; font-size: 18px; border-radius: 12px; }
+
+.auth-brand .brand-text {
+  font-family: var(--font-heading);
+  font-size: 20px; font-weight: 700;
+  color: var(--text-primary);
+}
+
+/* ══════════════════════════════════════
+   AUTH CARD
+══════════════════════════════════════ */
+.auth-card {
+  background: var(--bg-card);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-lg);
+  border: 1px solid var(--border);
+  padding: 36px 36px 32px;
+  transition: var(--tr);
+}
+.auth-card-header {
+  margin-bottom: 28px;
+  text-align: center;
+}
+.auth-card-header h1 {
+  font-size: 22px; font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 6px;
+}
+.auth-card-header p {
+  font-size: 13.5px;
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+
+/* ══════════════════════════════════════
+   AUTH META ROW (remember me + link)
+══════════════════════════════════════ */
+.auth-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  font-size: 13px;
+}
+
+/* ══════════════════════════════════════
+   AUTH FOOTER LINK
+══════════════════════════════════════ */
+.auth-footer {
+  text-align: center;
+  margin-top: 20px;
+  font-size: 13.5px;
+  color: var(--text-secondary);
+}
+.auth-footer a { font-weight: 600; }
+
+/* ══════════════════════════════════════
+   REGISTER WIDER CARD
+══════════════════════════════════════ */
+.auth-wrapper.wide { max-width: 500px; }
+.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+
+/* ══════════════════════════════════════
+   RESPONSIVE — AUTH
+══════════════════════════════════════ */
+@media (max-width: 480px) {
+  .auth-card { padding: 24px 20px; }
+  .auth-card-header h1 { font-size: 20px; }
+  .gender-group { flex-direction: column; }
+  .gender-option { min-width: unset; }
+  .two-col { grid-template-columns: 1fr; }
+}
